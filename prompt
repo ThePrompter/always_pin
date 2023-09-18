@@ -1,0 +1,12 @@
+create a chrome extension using manifest version 3 that does this without using popup:
+1. when the user install the extension, it create a object call pinnedTabs in chrome.storage
+2. pinnedTabs is an object using URL as key, and the value is number indicating an order where it is display
+3. when user click on the extension icon, background.js read the values of pinnedTabs synchronously, get the url of the current tab.
+4. the url is checked against the keys of pinnedTabs.
+5. if the url is not in pinnedTabs, add the url as a key in pinnedTabs, set the value with the largest number of order + 1. Then pin the current tab.
+6. if the url is in pinnedTabs, remove the url from pinnedTabs.
+7. Save pinnedTabs back to chrome.storage
+8. When a new windows is open, background.js read pinnedTabs from chrome.storage. read all the keys in pinnedTabs and order them base on the values. Then open a tab for each of the url and pin them in order
+9. create a options page for the extension. In the options page, read the values of pinnedTabs then render a html table of url in pinnedTabs in order.
+10. each row of the table should have 2 buttons, first button move the url up in order. second button move the url down in order
+11. at the bottom of the option page, there should be a save button. When user click on the save button, the values of pinnedTabs are saved back to chrome.storage
